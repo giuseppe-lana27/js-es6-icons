@@ -117,3 +117,13 @@ const icons = [
     category: "animal"
   },
 ];
+// mostro in pagina le icone
+icons.forEach((icon) => {
+  const {name, prefix, family} = icon;
+  const htmlIcons = `
+  <div>
+    <i class="${family} ${prefix}${name}"></i>
+    <div class="title">${name}</div>
+  </div> `;  
+  $(".icons").append(htmlIcons);
+});
