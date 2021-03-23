@@ -126,7 +126,6 @@ icons.forEach((icon) => {
     categories.push(icon.category);
   }
 });
-console.log(categories);
 // mappo l'array per inserire i colori in base alla categoria
 const coloredIcons = icons.map((icon) =>{
   const catIndex = categories.indexOf(icon.category);
@@ -134,29 +133,18 @@ const coloredIcons = icons.map((icon) =>{
   icon.color = itemColor;
   return icon;
 });
-console.log(coloredIcons);
 // Milestone 1. stampo a schermo le icone con i colori inseriti in Milestone 2.
 coloredIcons.forEach((icon) => {
-  const {name, prefix, family, color} = icon;
-  const htmlIcons = `
-  <div>
-    <i class="${family} ${prefix}${name}" style="color:${color}"></i>
-    <div class="title">${name}</div>
-  </div> `;
-  $(".icons").append(htmlIcons);
+  printingIcons(coloredIcons);
 });
-
 // Milestone 3. usare la select per filtrare le icone
-
 const selection = $("#type");
-
 categories.forEach((item) => {
   const htmlOpt = `
   <option value="${item}">${item}</option>
   `;
   $(selection).append(htmlOpt);
 });
-
 selection.change(function() {
   const selectedOpt = $(this).val();
   // filtro le icone in base alla categoria
@@ -167,10 +155,14 @@ selection.change(function() {
   if (filteringIcons.length == 0){
     filteringIcons = coloredIcons;
   }
-  // svuoto la pagina
+  // svuoto la pagina e mostro in pagina le icone in base alla categoria scelta
+  printingIcons(filteringIcons);
+});
+
+// funzione per stampare le icone a schermo
+function printingIcons(icons){
   $(".icons").html(" ");
-  // mostro in pagina le icone in base alla categoria scelta
-  filteringIcons.forEach((icon) => {
+  icons.forEach((icon) => {
     const {name, prefix, family, color} = icon;
     const htmlIcons = `
     <div>
@@ -179,5 +171,4 @@ selection.change(function() {
     </div> `;
     $(".icons").append(htmlIcons);
   });
-  console.log(filteringIcons);
-});
+}
