@@ -134,9 +134,7 @@ const coloredIcons = icons.map((icon) =>{
   return icon;
 });
 // Milestone 1. stampo a schermo le icone con i colori inseriti in Milestone 2.
-coloredIcons.forEach((icon) => {
-  printingIcons(coloredIcons);
-});
+printingIcons(coloredIcons);
 // Milestone 3. usare la select per filtrare le icone
 const selection = $("#type");
 categories.forEach((item) => {
